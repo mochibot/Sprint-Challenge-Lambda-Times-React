@@ -5,7 +5,15 @@ import Content from './components/Content/Content';
 import Login from './components/Login';
 import withAuthenticate from './components/authentication/withAuthenticate';
 
-const ComponentWithAuthenticate = withAuthenticate(Content)(Login);
+const EmptyDiv = () => {
+  return (
+    <div>
+      Please log in to see content
+    </div>
+  )
+}
+
+const ComponentWithAuthenticate = withAuthenticate(Content)(EmptyDiv);
 
 const App = () => {
   return (
