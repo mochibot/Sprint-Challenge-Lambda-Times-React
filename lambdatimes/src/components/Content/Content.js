@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Carousel from '../Carousel/Carousel';
 import Tabs from './Tabs';
 import Cards from './Cards';
 
@@ -54,6 +54,7 @@ export default class Content extends Component {
   render() {
     return (
       <div className="content-container">
+        <Carousel />
         {/* 
           Add 2 props to the Tabs component, 
           `selectedTab` that includes the currently selected tab
