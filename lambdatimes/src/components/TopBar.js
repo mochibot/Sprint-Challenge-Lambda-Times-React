@@ -15,6 +15,7 @@ const TopBarDiv = styled.div`
   position: fixed;
   height: 44px;
   background-color: #333;
+  z-index: 10;
 `
 const TopBarContainerDiv = styled.div`
   width: 100%;
@@ -97,6 +98,12 @@ class TopBar extends React.Component {
       modal: !prevState.modal
     }));
   }
+  
+  logout =() => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem('username');
+    window.location.reload();
+  }
 
   render() {
   return (
@@ -114,10 +121,10 @@ class TopBar extends React.Component {
           <span>ANNOUNCEMENTS</span>
         </TopBarContainerCenterDiv>
         <TopBarContainerRightDiv>
-          <span onClick={this.toggleModal}>LOG IN</span>
-          <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
-            <Login />          
-            <Button color="secondary" onClick={this.toggleModal}>Close</Button>
+          {!localStorage.getItem('username') ? <span onClick={this.toggleModal}>LOG IN</span> : <span onClick={this.logout}>LOG OUT</span>}
+          <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+            <Login />
+            <Button color="link" onClick={this.toggleModal}>Close</Button>
           </Modal>
         </TopBarContainerRightDiv>
       </TopBarContainerDiv>
